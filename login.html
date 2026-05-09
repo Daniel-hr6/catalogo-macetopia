@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macetopia - Acceso Administrador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <style>
+        body { margin: 0; }
+        .login-wrapper {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-main);
+            background-image: linear-gradient(135deg, #f5f6fa 0%, #ece9e6 100%);
+        }
+        .login-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+        .login-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 40px 20px;
+                border-radius: 0;
+            }
+            .login-wrapper {
+                padding: 10px;
+            }
+            .login-logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h1 class="login-logo">Macetopia</h1>
+            <p style="color: var(--text-muted); margin-bottom: 35px; font-size: 0.95rem;">Ingresa para gestionar tu catálogo</p>
+            
+            <form id="login-form">
+                <div class="input-wrapper" style="text-align: left;">
+                    <label style="color: #444;">Contraseña de Seguridad</label>
+                    <input type="password" id="login-password" required placeholder="Ingresa tu contraseña" autofocus style="padding: 15px; font-size: 1rem;">
+                </div>
+                <button type="submit" class="btn btn-primary btn-large" style="width: 100%; margin-top: 15px; padding: 15px;">Entrar al Panel</button>
+                <a href="index.html" class="btn btn-outline" style="display: block; margin-top: 15px; text-decoration: none; padding: 15px;">Volver a la Tienda</a>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Check if already authenticated via server ping
+        const pwd = localStorage.getItem('adminPassword');
+        if (pwd) {
+            fetch('/api/check-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: pwd })
+            }).then(res => {
+                if (res.ok) window.location.href = 'admin.html';
+            });
+        }
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const inputPwd = document.getElementById('login-password').value;
+            const res = await fetch('/api/check-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: inputPwd })
+            });
+            if (res.ok) {
+                localStorage.setItem('adminPassword', inputPwd);
+                window.location.href = 'admin.html';
+            } else {
+                alert('Contraseña incorrecta');
+            }
+        });
+    </script>
+</body>
+</html>

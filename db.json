@@ -1,0 +1,62 @@
+{
+  "config": {
+    "password": "1234",
+    "whatsapp": "4661074905",
+    "messenger": "https://m.me/61586445820694",
+    "currency": "$",
+    "currencyCode": "MXN",
+    "preferredContact": "whatsapp",
+    "greetingMessage": "¡Hola! Me gustaría hacer una consulta sobre las macetas.",
+    "logoUrl": "/uploads/img-1778299036062.png",
+    "clrBackground": "#ed02da",
+    "clrSurface": "#eda507",
+    "clrTextMain": "#2c2c2a",
+    "clrAccent": "#a67c52"
+  },
+  "products": [
+    {
+      "id": "m02",
+      "name": "Cilindro Minimalista Blanco",
+      "description": "Maceta de cerámica con esmalte mate artesanal. Líneas puras que resaltan el verde de tus plantas de interior.",
+      "price": 520,
+      "image": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&q=80&w=800",
+      "category": "Cerámica",
+      "stock": 1
+    },
+    {
+      "id": "m03",
+      "name": "Maceta Texturizada 'Carbón'",
+      "description": "Acabado rústico y poroso intenso en tono oscuro. Perfecta para contrastar con plantas de hojas grandes y claras.",
+      "price": 480,
+      "image": "/uploads/img-1778298765613.png",
+      "category": "Concreto",
+      "stock": 2
+    },
+    {
+      "id": "m04",
+      "name": "Set Macetas 'kk'",
+      "description": "Trío de macetas de diferentes tamaños para crear composiciones armónicas en cualquier rincón de tu hogar.",
+      "price": 890,
+      "image": "/uploads/img-1778298887060.JPEG",
+      "category": "Terracota",
+      "stock": 10
+    },
+    {
+      "id": "m05",
+      "name": "Cuenco Bajo Jaspeado",
+      "description": "Elegante recipiente ancho y de baja altura, diseñado específicamente para arreglos florales delicados o bonsáis.",
+      "price": 650,
+      "image": "https://images.unsplash.com/photo-1542817812-32a2f8fc7716?auto=format&fit=crop&q=80&w=800",
+      "category": "Cerámica Especiada"
+    },
+    {
+      "name": "Maseta de Princesa",
+      "description": "esta chida\n",
+      "price": 100,
+      "category": "princesa",
+      "stock": 5,
+      "image": "/uploads/img-1778299003441.png",
+      "id": "p1778299003473"
+    }
+  ]
+}

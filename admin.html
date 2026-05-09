@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Macetopia</title>
+    <!-- Use Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Panel Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><button class="nav-btn active" data-target="config-section">Configuración</button></li>
+                    <li><button class="nav-btn" data-target="products-section">Productos</button></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="btn btn-outline-light">Volver al Catálogo</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Section: Config -->
+            <section id="config-section" class="content-section active">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Configuración del Catálogo</h3>
+                        <p>Personaliza la apariencia y el contacto general de Macetopia.</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="config-form">
+                            <!-- Group: Contacto -->
+                            <fieldset class="form-group">
+                                <legend>Contacto</legend>
+                                <div class="input-wrapper">
+                                    <label>WhatsApp (ej. 525512345678):</label>
+                                    <input type="text" id="whatsapp-input" placeholder="525512345678">
+                                </div>
+                                <div class="input-wrapper">
+                                    <label>Mensaje de Saludo para botón flotante:</label>
+                                    <input type="text" id="greeting-input">
+                                </div>
+                            </fieldset>
+
+                            <!-- Group: Personalización -->
+                            <fieldset class="form-group">
+                                <legend>Apariencia Visual</legend>
+                                <div class="input-wrapper">
+                                    <label>Logotipo del Catálogo:</label>
+                                    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+                                        <input type="url" id="logo-input" placeholder="https://ejemplo.com/logo.png" style="flex: 1;">
+                                        <span>o</span>    
+                                        <input type="file" id="logo-file" accept="image/*" class="file-input">
+                                    </div>
+                                    <div id="logo-preview-container" style="display:none; margin-top: 5px;">
+                                        <img id="logo-preview" style="max-height: 50px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                    </div>
+                                </div>
+
+                                <div class="color-grid">
+                                    <div class="input-wrapper">
+                                        <label>Fondo:</label>
+                                        <input type="color" id="clr-background" class="color-picker">
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <label>Superficie:</label>
+                                        <input type="color" id="clr-surface" class="color-picker">
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <label>Texto Principal:</label>
+                                        <input type="color" id="clr-text-main" class="color-picker">
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <label>Acento:</label>
+                                        <input type="color" id="clr-accent" class="color-picker">
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <!-- Group: Seguridad -->
+                            <fieldset class="form-group">
+                                <legend>Seguridad</legend>
+                                <div class="input-wrapper">
+                                    <label>Nueva Contraseña (opcional):</label>
+                                    <input type="password" id="password-input" placeholder="Escribe para cambiar la actual">
+                                </div>
+                            </fieldset>
+
+                            <button type="submit" class="btn btn-primary btn-large">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Products -->
+            <section id="products-section" class="content-section" style="display:none;">
+                <div class="card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3>Inventario de Productos</h3>
+                            <p>Administra los artículos disponibles en el catálogo.</p>
+                        </div>
+                        <button id="add-product-btn" class="btn btn-primary">Agregar Producto</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="product-list" class="dashboard-product-list">
+                            <!-- JS populated -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="product-modal" class="modal" style="display:none;">
+        <div class="modal-card">
+            <h3 id="modal-title">Detalle del Producto</h3>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                
+                <div class="input-wrapper">
+                    <label>Nombre:</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                
+                <div class="input-wrapper">
+                    <label>Descripción:</label>
+                    <textarea id="product-desc" rows="3" required></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 15px;">
+                    <div class="input-wrapper" style="flex: 1;">
+                        <label>Precio ($ MXN):</label>
+                        <input type="number" id="product-price" step="0.01" required>
+                    </div>
+                    <div class="input-wrapper" style="flex: 1;">
+                        <label>Categoría:</label>
+                        <input type="text" id="product-category" required>
+                    </div>
+                    <div class="input-wrapper" style="flex: 1;">
+                        <label>Stock Disp.:</label>
+                        <input type="number" id="product-stock" step="1" min="0" value="0" required>
+                    </div>
+                </div>
+                
+                <div class="input-wrapper">
+                    <label>Imagen del Producto:</label>
+                    <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+                        <input type="url" id="product-image" placeholder="URL de la imagen" style="flex: 1;">
+                        <span>o</span>
+                        <input type="file" id="product-image-file" accept="image/*" class="file-input">
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                    <button type="button" id="cancel-btn" class="btn btn-outline">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>

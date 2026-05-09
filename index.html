@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macetas Artesanales | Catálogo</title>
+    
+    <!-- Google Fonts: Playfair Display for headings, Inter for body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <a href="login.html" class="logo-link" style="display: flex; align-items: center;" title="Acceso al menú de administración">
+                <img src="logo.jpeg" alt="Macetopia" style="height: 40px; max-width: 150px; object-fit: contain;">
+                <span class="logo" style="margin-left: 10px; font-size: 1.2rem;">Macetopia</span>
+            </a>
+            <div class="nav-actions">
+                <nav class="nav-links">
+                    <a href="#catalogo">Catálogo</a>
+                    <a href="#contacto" id="nav-contact-btn">Contacto</a>
+                </nav>
+                <button id="cart-btn" class="cart-btn" aria-label="Ver carrito">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">Arte en cada detalle</h2>
+            <p class="hero-subtitle">Macetas artesanales diseñadas para dar vida y elegancia a tus espacios.</p>
+            <a href="#catalogo" class="btn btn-primary">Ver Colección</a>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <main id="catalogo" class="catalog-section container">
+        <div class="section-header">
+            <h2 class="section-title">Nuestra Colección</h2>
+            <div class="divider"></div>
+            <p class="section-description">Explora nuestras piezas únicas hechas a mano.</p>
+        </div>
+
+        <div id="catalog-grid" class="catalog-grid">
+            <!-- Products will be injected here by app.js -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>Macetopia</h3>
+                <p>Artesanía con alma para tus plantas.</p>
+            </div>
+            <div class="footer-social">
+                <button id="footer-contact-btn" class="btn btn-outline">Enviar un mensaje general</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> Macetopia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Pedido</h2>
+            <button id="close-cart-btn" class="close-cart-btn" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="cart-total-price" style="font-weight: 600;">$0.00 MXN</span>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Enviar pedido por Mensaje</button>
+        </div>
+    </div>
+
+    <!-- Floating Contact Button -->
+    <button id="floating-btn" class="floating-btn" aria-label="Contactar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
